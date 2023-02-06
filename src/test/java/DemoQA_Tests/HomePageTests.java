@@ -7,6 +7,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,9 +20,6 @@ public class HomePageTests extends TestBase {
 
     @BeforeMethod
     public void pageSetUp() {
-        /*WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wdwait = new WebDriverWait(driver, Duration.ofSeconds(10));*/
         driver.manage().window().maximize();
         driver.get(homeURL);
         Assert.assertEquals(driver.getCurrentUrl(), "https://demoqa.com/");
@@ -34,10 +32,10 @@ public class HomePageTests extends TestBase {
     @Test (priority = 10)
     public void CheckHomeBunnerClickability () {
         homePage.clickOnHomeBunner();
-        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
+        switchToNewTab(1);
         Assert.assertEquals(driver.getCurrentUrl(), excelReader.getStringData("URL", 1, 1));
-        driver.close();
+        closeNewTab(1);
+        switchToNewTab(0);
 
     }
 
@@ -89,10 +87,11 @@ public class HomePageTests extends TestBase {
                 excelReader.getStringData("URL", 1, 7));
     }
 
-    /*@AfterMethod
-    public void quit () {
+    @AfterClass
+    public void tearDown () {
+        driver.manage().deleteAllCookies();
         driver.quit();
-    }*/
+    }
 
 
 }

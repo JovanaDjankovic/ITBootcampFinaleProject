@@ -2,6 +2,9 @@ package DemoQA_Base;
 
 
 import DemoQA_Pages.*;
+import DemoQA_Pages.AlertsFrameWindows.AlertsPage;
+import DemoQA_Pages.AlertsFrameWindows.BrowserWindowsPage;
+import DemoQA_Pages.Widgets.ProgressBarPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +13,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.io.IOException;
@@ -34,8 +36,10 @@ public class TestBase {
     public BrokenLinksPage brokenLinksPage;
     public UploadDownloadPage uploadDownloadPage;
     public DynamicPropertiesPage dynamicPropertiesPage;
-
     public WebTablesPage webTablesPage;
+    public BrowserWindowsPage browserWindowsPage;
+    public AlertsPage alertsPage;
+    public ProgressBarPage progressBarPage;
 
 
 
@@ -80,6 +84,15 @@ public class TestBase {
         driver.switchTo().window(tabs.get(i));
     }
 
+    public void closeNewTab(int i) {
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(i));
+        driver.close();
+    }
+
+
+
+
     public void waitForVisibility(WebElement element) {
         wdwait.until(ExpectedConditions.visibilityOf(element));
     }
@@ -101,6 +114,16 @@ public class TestBase {
     public void goToElementsPage () {
         scrollIntoView(homePage.getCards().get(0));
         homePage.clickOnElements();
+    }
+
+    public void goToAlerts () {
+        scrollToTheEnd();
+        homePage.clickOnAlerts();
+    }
+
+    public void goToWidgets () {
+        scrollToTheEnd();
+        homePage.clickOnWidgets();
     }
 
     public void clickOnTextBoxButton () {
