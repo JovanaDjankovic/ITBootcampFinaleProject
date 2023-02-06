@@ -3,7 +3,6 @@ package DemoQA_Tests;
 import DemoQA_Base.TestBase;
 import DemoQA_Pages.CheckBoxPage;
 import DemoQA_Pages.HomePage;
-import DemoQA_Pages.RadioButtonPage;
 import DemoQA_Pages.SidebarPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -35,7 +34,6 @@ public class CheckBoxTests extends TestBase {
             Assert.assertEquals("home", checkBoxPage.getNotificationSuccess());
             Assert.assertEquals(checkBoxPage.getCheckedList(i),4 );
         }
-
     }
 
     @Test (priority = 20)
@@ -114,7 +112,5 @@ public class CheckBoxTests extends TestBase {
         Assert.assertEquals("rct-icon rct-icon-check",checkBoxPage.React.getAttribute("class"));
         Assert.assertEquals("react", checkBoxPage.getNotificationSuccess());
     }
-
-
 
 }

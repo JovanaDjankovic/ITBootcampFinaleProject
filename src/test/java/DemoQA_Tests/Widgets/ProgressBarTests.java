@@ -4,14 +4,11 @@ import DemoQA_Base.TestBase;
 import DemoQA_Pages.HomePage;
 import DemoQA_Pages.SidebarPage;
 import DemoQA_Pages.Widgets.ProgressBarPage;
-import io.cucumber.java.bs.A;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class ProgressBarTests extends TestBase {
 

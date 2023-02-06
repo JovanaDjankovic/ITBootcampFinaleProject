@@ -19,7 +19,6 @@ public class RadioButtonTests extends TestBase {
         homePage = new HomePage(driver, wdwait);
         sidebarPage = new SidebarPage(driver, wdwait);
         radioButtonPage = new RadioButtonPage(driver, wdwait);
-
     }
 
     @Test (priority = 10)

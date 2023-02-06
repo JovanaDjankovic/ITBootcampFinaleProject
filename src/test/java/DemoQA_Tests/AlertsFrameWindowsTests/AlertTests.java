@@ -2,12 +2,9 @@ package DemoQA_Tests.AlertsFrameWindowsTests;
 
 import DemoQA_Base.TestBase;
 import DemoQA_Pages.AlertsFrameWindows.AlertsPage;
-import DemoQA_Pages.AlertsFrameWindows.BrowserWindowsPage;
 import DemoQA_Pages.HomePage;
 import DemoQA_Pages.SidebarPage;
-import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.Alert;
-import org.openxmlformats.schemas.drawingml.x2006.main.ThemeDocument;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
