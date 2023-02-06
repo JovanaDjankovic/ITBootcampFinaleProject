@@ -42,7 +42,7 @@ public class RadioButtonTests extends TestBase {
         goToElementsPage();
         sidebarPage.clickOnButton("Radio Button");
         clickElementJS(radioButtonPage.No);
-        Assert.assertFalse(radioButtonPage.No.isEnabled());
+        Assert.assertTrue(radioButtonPage.No.isEnabled());
     }
 
 }
