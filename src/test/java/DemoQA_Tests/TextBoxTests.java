@@ -4,16 +4,13 @@ import DemoQA_Base.TestBase;
 import DemoQA_Pages.HomePage;
 import DemoQA_Pages.SidebarPage;
 import DemoQA_Pages.TextBoxPage;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
 
 public class TextBoxTests extends TestBase {
-
 
 
     @BeforeMethod
@@ -26,7 +23,6 @@ public class TextBoxTests extends TestBase {
         sidebarPage = new SidebarPage(driver, wdwait);
         textBoxPage = new TextBoxPage(driver, wdwait);
     }
-
 
     @Test(priority = 10)
     public void checkTextboxURL () {
@@ -54,45 +50,103 @@ public class TextBoxTests extends TestBase {
         for (int i = 0; i < textBoxPage.Output.size(); i++) {
             System.out.println(textBoxPage.outputText(i));
         }
-
     }
 
+    @Test (priority = 30)
     public void userCanFillFullnameFieldWithValidInput () {
         clickOnTextBoxButton();
-        for (int i = 1; i <= excelReader.getLastRowNumber(); i++) {
-            String validFullname = excelReader.getStringData("Textbox", i, 0);
+        for (int i = 1; i < excelReader.getLastRow("Fullname"); i++) {
+            String validFullname = excelReader.getStringData("Fullname", i, 0);
             textBoxPage.insertUsername(validFullname);
             scrollIntoView(textBoxPage.Submit);
             textBoxPage.clickOnSubmit();
-            //System.out.println(textBoxPage.outputText(0));
         }
+        Assert.assertTrue(isDisplayed(textBoxPage.Output.get(0)));
     }
 
-    @Test
+    @Test (priority = 40)
     public void userCanFillFullnameFieldWithInvalidInput () {
         clickOnTextBoxButton();
-        for (int i = 1; i <= excelReader.getLastRowNumber(); i++) {
-            String invalidFullname = excelReader.getStringData("Textbox", i, 4);
+        for (int i = 1; i <= excelReader.getLastRow("Fullname"); i++) {
+
+            String invalidFullname = excelReader.getStringData("Fullname", i, 1);
             textBoxPage.insertUsername(invalidFullname);
             scrollIntoView(textBoxPage.Submit);
             textBoxPage.clickOnSubmit();
-            System.out.println(textBoxPage.outputText(0));
         }
+        Assert.assertTrue(isDisplayed(textBoxPage.Output.get(0)));
     }
 
-    @Test
+    @Test (priority = 50)
     public void userCanFillEmailFieldWithValidInput () {
         clickOnTextBoxButton();
-        for (int i = 1; i <= excelReader.getLastRowNumber(); i++) {
+        for (int i = 1; i <= excelReader.getLastRow("Textbox"); i++) {
             String validEmail = excelReader.getStringData("Textbox", i, 1);
-            textBoxPage.insertUsername(validEmail);
+            textBoxPage.insertEmail(validEmail);
             scrollIntoView(textBoxPage.Submit);
             textBoxPage.clickOnSubmit();
-            //System.out.println(textBoxPage.outputText(1));
         }
     }
 
+    @Test (priority = 60)
+    public void userCanFillEmailFieldWithInvalidInput () {
+        clickOnTextBoxButton();
+        for (int i = 1; i <= excelReader.getLastRow("Email"); i++) {
+            String invalidEmail = excelReader.getStringData("Email", i, 0);
+            textBoxPage.insertEmail(invalidEmail);
+            scrollIntoView(textBoxPage.Submit);
+            textBoxPage.clickOnSubmit();
+        }
+    }
 
+    @Test (priority = 70)
+    public void userCanFillCurrentAddressFieldWithValidInput () {
+        clickOnTextBoxButton();
+        for (int i = 1; i <= excelReader.getLastRow("Address"); i++) {
+            String validCurrentAddress = excelReader.getStringData("Address", i,0 );
+            textBoxPage.insertCurrentAddress(validCurrentAddress);
+            scrollIntoView(textBoxPage.Submit);
+            textBoxPage.clickOnSubmit();
+        }
+        Assert.assertTrue(isDisplayed(textBoxPage.Output.get(0)));
+    }
 
+    @Test (priority = 80)
+    public void userCanFillCurrentAddressFieldWithInvalidInput () {
+        clickOnTextBoxButton();
+        for (int i = 1; i <= excelReader.getLastRow("Address"); i++) {
+            String invalidCurrentAddress = excelReader.getStringData("Address", i,1 );
+            textBoxPage.insertCurrentAddress(invalidCurrentAddress);
+            scrollIntoView(textBoxPage.Submit);
+            textBoxPage.clickOnSubmit();
+        }
+        Assert.assertTrue(isDisplayed(textBoxPage.Output.get(0)));
+    }
+
+    @Test (priority = 90)
+    public void userCannotFillTextwithAllInvalidInput() {
+        String invalidFullname = excelReader.getStringData("Textbox",1, 4);
+        String invalidEmail = excelReader.getStringData("Textbox", 1, 5);
+        String invalidcurrentAddress = excelReader.getStringData("Textbox", 1, 6);
+        String invalidpermanentAddress = excelReader.getStringData("Textbox", 1, 7);
+
+        clickOnTextBoxButton();
+
+        textBoxPage.insertUsername(invalidFullname);
+        textBoxPage.insertEmail(invalidEmail);
+        textBoxPage.insertCurrentAddress(invalidcurrentAddress);
+        textBoxPage.insertPermanentAddress(invalidpermanentAddress);
+        scrollIntoView(textBoxPage.Submit);
+        textBoxPage.clickOnSubmit();
+
+        waitForClickability(textBoxPage.Submit);
+
+    }
+
+    @AfterClass
+    public void tearDown () {
+        driver.manage().deleteAllCookies();
+        driver.quit();
+    }
 
 }

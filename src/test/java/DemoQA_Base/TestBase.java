@@ -35,6 +35,8 @@ public class TestBase {
     public UploadDownloadPage uploadDownloadPage;
     public DynamicPropertiesPage dynamicPropertiesPage;
 
+    public WebTablesPage webTablesPage;
+
 
 
 
