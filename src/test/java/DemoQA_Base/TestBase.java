@@ -90,9 +90,6 @@ public class TestBase {
         driver.close();
     }
 
-
-
-
     public void waitForVisibility(WebElement element) {
         wdwait.until(ExpectedConditions.visibilityOf(element));
     }

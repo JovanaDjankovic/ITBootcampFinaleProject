@@ -20,6 +20,11 @@ public class LinksTests extends TestBase {
 
     @BeforeMethod
     public void pageSetUp() {
+       /* WebDriverManager.chromedriver().setup(); //pre pokretanja testa odkomentarisati ovaj deo i AfterMethod
+        driver = new ChromeDriver();
+        wdwait = new WebDriverWait(driver, Duration.ofSeconds(10));*/
+
+
         driver.manage().window().maximize();
         driver.get(homeURL);
         Assert.assertEquals(driver.getCurrentUrl(), "https://demoqa.com/");
@@ -37,8 +42,6 @@ public class LinksTests extends TestBase {
         linksPage.clickOnHomeLink();
         switchToNewTab(1);
         Assert.assertEquals(driver.getCurrentUrl(), excelReader.getStringData("URL", 1, 0));
-        closeNewTab(1);
-        switchToNewTab(0);
     }
 
     @Test (priority = 20)
@@ -49,8 +52,6 @@ public class LinksTests extends TestBase {
         linksPage.clickOnHomevCkyELink();
         switchToNewTab(1);
         Assert.assertEquals(driver.getCurrentUrl(), excelReader.getStringData("URL", 1, 0));
-        closeNewTab(1);
-        switchToNewTab(0);
     }
 
     @Test (priority = 30)
