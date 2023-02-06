@@ -2,10 +2,8 @@ package DemoQA_Tests;
 
 import DemoQA_Base.TestBase;
 import DemoQA_Pages.ButtonsPage;
-import DemoQA_Pages.CheckBoxPage;
 import DemoQA_Pages.HomePage;
 import DemoQA_Pages.SidebarPage;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
