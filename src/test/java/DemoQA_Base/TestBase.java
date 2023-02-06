@@ -43,9 +43,6 @@ public class TestBase {
 
 
 
-
-
-
     @BeforeClass
     public void setUp() throws IOException {
         WebDriverManager.chromedriver().setup();   //ugasiti za LinksTest
